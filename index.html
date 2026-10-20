@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Waleed AI Automation | AI Agents & Automation for Small Businesses</title>
+<meta name="description" content="Waleed AI Automation builds AI chatbots, customer support automation, lead generation, appointment booking and workflow automation for small businesses.">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232563eb'/%3E%3Cpath d='M20 44 32 16l12 28M25 36h14' stroke='white' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+<style>
+  /* ---------- Design tokens (change colors here) ---------- */
+  :root{
+    --bg:#ffffff;
+    --text:#0a0a0a;
+    --muted:#5b6472;
+    --line:#e7eaf0;
+    --soft:#f6f8fc;
+    --blue:#2563eb;
+    --blue-dark:#1d4ed8;
+    --blue-soft:#eaf1ff;
+    --radius:18px;
+    --shadow:0 10px 30px rgba(15,23,42,.07);
+    --shadow-lg:0 24px 60px rgba(37,99,235,.14);
+    --max:1160px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:84px}
+  body{
+    font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  img,svg{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  .container{width:min(var(--max),100% - 40px);margin-inline:auto}
+  section{padding:104px 0}
+  .eyebrow{
+    display:inline-block;font-size:.8rem;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--blue);margin-bottom:14px;
+  }
+  h1,h2,h3{line-height:1.12;letter-spacing:-.02em}
+  h2{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:750;margin-bottom:16px}
+  .lead{color:var(--muted);font-size:1.1rem;max-width:640px}
+  .section-head{margin-bottom:56px}
+  .section-head.center{text-align:center}
+  .section-head.center .lead{margin-inline:auto}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:14px 26px;border-radius:999px;font-weight:600;font-size:.98rem;
+    border:1.5px solid transparent;cursor:pointer;font-family:inherit;
+    transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s ease,border-color .2s ease;
+  }
+  .btn-primary{background:var(--blue);color:#fff;box-shadow:0 8px 22px rgba(37,99,235,.28)}
+  .btn-primary:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 12px 28px rgba(37,99,235,.35)}
+  .btn-ghost{background:#fff;color:var(--text);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px)}
+  .btn:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{
+    outline:3px solid rgba(37,99,235,.45);outline-offset:2px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:fixed;inset:0 0 auto 0;z-index:50;
+    background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(14px);
+    -webkit-backdrop-filter:saturate(180%) blur(14px);
+    border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s;
+  }
+  header.scrolled{border-color:var(--line);box-shadow:0 4px 20px rgba(15,23,42,.04)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:750;letter-spacing:-.01em;font-size:1.05rem}
+  .logo-mark{
+    width:34px;height:34px;border-radius:10px;background:var(--blue);display:grid;place-items:center;
+    box-shadow:0 6px 16px rgba(37,99,235,.3);
+  }
+  .logo-mark svg{width:20px;height:20px}
+  .logo span em{font-style:normal;color:var(--blue)}
+  .nav-links{display:flex;align-items:center;gap:30px;list-style:none}
+  .nav-links a{font-size:.95rem;font-weight:500;color:#2a2f3a;position:relative;transition:color .2s}
+  .nav-links a:not(.btn)::after{
+    content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--blue);transition:width .25s;
+  }
+  .nav-links a:not(.btn):hover{color:var(--blue)}
+  .nav-links a:not(.btn):hover::after{width:100%}
+  .nav-links .btn{padding:10px 20px;font-size:.9rem;color:#fff}
+  .menu-btn{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;border-radius:10px}
+  .menu-btn span,.menu-btn span::before,.menu-btn span::after{
+    display:block;width:22px;height:2px;background:var(--text);border-radius:2px;position:relative;margin:auto;transition:transform .25s,background .25s;
+  }
+  .menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0}
+  .menu-btn span::before{top:-7px}
+  .menu-btn span::after{top:7px}
+  .menu-btn[aria-expanded="true"] span{background:transparent}
+  .menu-btn[aria-expanded="true"] span::before{transform:translateY(7px) rotate(45deg)}
+  .menu-btn[aria-expanded="true"] span::after{transform:translateY(-7px) rotate(-45deg)}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:168px 0 96px;position:relative;overflow:hidden}
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:
+      radial-gradient(60% 50% at 85% 10%,rgba(37,99,235,.10),transparent 70%),
+      radial-gradient(40% 40% at 5% 60%,rgba(37,99,235,.06),transparent 70%);
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;z-index:-1;opacity:.5;
+    background-image:radial-gradient(#d7deec 1px,transparent 1px);background-size:26px 26px;
+    -webkit-mask-image:linear-gradient(to bottom,#000 0%,transparent 75%);
+            mask-image:linear-gradient(to bottom,#000 0%,transparent 75%);
+  }
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+  .pill{
+    display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;
+    background:var(--blue-soft);color:var(--blue-dark);font-size:.85rem;font-weight:600;margin-bottom:24px;
+  }
+  .pill i{width:7px;height:7px;border-radius:50%;background:var(--blue);animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,99,235,.5)}70%{box-shadow:0 0 0 9px rgba(37,99,235,0)}100%{box-shadow:0 0 0 0 rgba(37,99,235,0)}}
+  .hero h1{font-size:clamp(2.6rem,6.4vw,4.6rem);font-weight:800;letter-spacing:-.035em;margin-bottom:22px}
+  .hero h1 .accent{color:var(--blue)}
+  .hero p.lead{font-size:1.18rem;margin-bottom:34px}
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px}
+  .hero-note{margin-top:22px;color:var(--muted);font-size:.9rem}
+
+  /* Hero chat mock */
+  .mock{
+    background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow-lg);
+    padding:20px;position:relative;animation:float 7s ease-in-out infinite;
+  }
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .mock-top{display:flex;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:18px}
+  .avatar{width:40px;height:40px;border-radius:12px;background:var(--blue);display:grid;place-items:center}
+  .avatar svg{width:22px;height:22px}
+  .mock-top b{display:block;font-size:.95rem;line-height:1.2}
+  .mock-top small{color:var(--muted);font-size:.78rem}
+  .msg{max-width:84%;padding:11px 15px;border-radius:16px;font-size:.92rem;margin-bottom:11px;opacity:0;transform:translateY(8px);animation:msgIn .5s forwards}
+  .msg.bot{background:var(--soft);border-top-left-radius:5px}
+  .msg.user{background:var(--blue);color:#fff;margin-left:auto;border-top-right-radius:5px}
+  .msg:nth-child(2){animation-delay:.6s}
+  .msg:nth-child(3){animation-delay:1.4s}
+  .msg:nth-child(4){animation-delay:2.2s}
+  .msg:nth-child(5){animation-delay:3s}
+  @keyframes msgIn{to{opacity:1;transform:none}}
+  .mock-foot{margin-top:6px;font-size:.74rem;color:#8a93a3;text-align:center}
+  .chip{
+    position:absolute;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 14px;
+    box-shadow:var(--shadow);font-size:.82rem;font-weight:600;display:flex;align-items:center;gap:8px;
+  }
+  .chip svg{width:18px;height:18px;color:var(--blue)}
+  .chip.c1{left:-26px;bottom:62px;animation:float 6s ease-in-out infinite .8s}
+  .chip.c2{right:-18px;top:-18px;animation:float 8s ease-in-out infinite .3s}
+
+  /* ---------- Intro ---------- */
+  .intro{background:var(--soft);border-block:1px solid var(--line)}
+  .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .intro p{color:var(--muted);font-size:1.06rem;margin-bottom:16px}
+  .intro p strong{color:var(--text)}
+  .checks{list-style:none;display:grid;gap:14px}
+  .checks li{
+    display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);
+    border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);
+  }
+  .tick{flex:none;width:26px;height:26px;border-radius:50%;background:var(--blue-soft);display:grid;place-items:center;margin-top:2px}
+  .tick svg{width:14px;height:14px;color:var(--blue)}
+  .checks b{display:block;font-size:1rem}
+  .checks span{color:var(--muted);font-size:.93rem}
+
+  /* ---------- Services ---------- */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;
+    transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;position:relative;overflow:hidden;
+  }
+  .card::before{
+    content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:var(--blue);
+    transform:scaleX(0);transform-origin:left;transition:transform .35s ease;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:#cfdcfb}
+  .card:hover::before{transform:scaleX(1)}
+  .icon{
+    width:52px;height:52px;border-radius:14px;background:var(--blue-soft);display:grid;place-items:center;margin-bottom:22px;
+    transition:background .3s,transform .3s;
+  }
+  .icon svg{width:26px;height:26px;color:var(--blue);transition:color .3s}
+  .card:hover .icon{background:var(--blue);transform:rotate(-4deg) scale(1.05)}
+  .card:hover .icon svg{color:#fff}
+  .card h3{font-size:1.25rem;margin-bottom:10px}
+  .card p{color:var(--muted);font-size:.98rem}
+  .card.cta-card{background:var(--text);border-color:var(--text);color:#fff;display:flex;flex-direction:column;justify-content:center}
+  .card.cta-card p{color:#b8c0cf;margin-bottom:22px}
+  .card.cta-card .btn{align-self:flex-start}
+  .card.cta-card::before{display:none}
+  .card.cta-card:hover{box-shadow:0 24px 50px rgba(10,10,10,.25);border-color:var(--text)}
+
+  /* ---------- How it works ---------- */
+  .how{background:var(--soft);border-block:1px solid var(--line)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;position:relative}
+  .steps::before{
+    content:"";position:absolute;top:34px;left:16%;right:16%;height:2px;
+    background:repeating-linear-gradient(90deg,#b9cdf8 0 8px,transparent 8px 16px);
+  }
+  .step{text-align:center;position:relative;padding:0 8px}
+  .num{
+    width:68px;height:68px;border-radius:50%;background:var(--blue);color:#fff;font-weight:750;font-size:1.4rem;
+    display:grid;place-items:center;margin:0 auto 24px;box-shadow:0 0 0 8px var(--soft),0 10px 24px rgba(37,99,235,.3);
+    position:relative;transition:transform .3s;
+  }
+  .step:hover .num{transform:scale(1.08)}
+  .step h3{font-size:1.4rem;margin-bottom:10px}
+  .step p{color:var(--muted);max-width:320px;margin-inline:auto}
+
+  /* ---------- Benefits ---------- */
+  .benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .benefit{padding:8px 4px}
+  .benefit .icon{margin-bottom:18px}
+  .benefit h3{font-size:1.1rem;margin-bottom:8px}
+  .benefit p{color:var(--muted);font-size:.96rem}
+  .disclaimer{
+    margin-top:44px;padding:18px 22px;border:1px dashed #c4d4f8;background:var(--blue-soft);border-radius:14px;
+    color:#34508f;font-size:.93rem;text-align:center;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact{background:var(--soft);border-top:1px solid var(--line)}
+  .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+  .contact-info p{color:var(--muted);margin-bottom:28px}
+  .info-list{list-style:none;display:grid;gap:16px}
+  .info-list li{display:flex;gap:14px;align-items:center;font-weight:500}
+  .info-list .icon{width:44px;height:44px;margin:0;border-radius:12px;flex:none}
+  .info-list .icon svg{width:20px;height:20px}
+  .info-list small{display:block;color:var(--muted);font-weight:400;font-size:.85rem}
+  form{
+    background:#fff;border:1px solid var(--line);border-radius:24px;padding:34px;box-shadow:var(--shadow-lg);
+  }
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .field{margin-bottom:18px}
+  label{display:block;font-weight:600;font-size:.88rem;margin-bottom:7px}
+  label .opt{font-weight:400;color:var(--muted)}
+  input,select,textarea{
+    width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:12px;font:inherit;font-size:.98rem;
+    background:#fff;color:var(--text);transition:border-color .2s,box-shadow .2s;
+  }
+  textarea{resize:vertical;min-height:130px}
+  input:hover,select:hover,textarea:hover{border-color:#c9d3e6}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(37,99,235,.14)}
+  input.invalid,textarea.invalid,select.invalid{border-color:#d92d20}
+  .err{color:#d92d20;font-size:.8rem;margin-top:5px;display:none}
+  .field.has-error .err{display:block}
+  form .btn{width:100%;margin-top:6px}
+  .form-status{margin-top:16px;font-size:.92rem;padding:12px 14px;border-radius:12px;display:none}
+  .form-status.show{display:block}
+  .form-status.ok{background:#ecfdf3;color:#05603a}
+  .form-status.bad{background:#fef3f2;color:#b42318}
+  .fine{margin-top:14px;font-size:.78rem;color:#8a93a3;text-align:center}
+  .hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+
+  /* ---------- Footer ---------- */
+  footer{padding:36px 0;border-top:1px solid var(--line);font-size:.9rem;color:var(--muted)}
+  .foot{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
+  .foot a:hover{color:var(--blue)}
+
+  /* ---------- Scroll reveal ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:1020px){
+    .cards{grid-template-columns:repeat(2,1fr)}
+    .benefits{grid-template-columns:repeat(2,1fr);gap:34px}
+  }
+  @media (max-width:880px){
+    section{padding:76px 0}
+    .hero{padding:132px 0 72px}
+    .hero-grid,.intro-grid,.contact-grid{grid-template-columns:1fr;gap:44px}
+    .mock{max-width:480px;margin-inline:auto;width:100%}
+    .chip.c1{left:-6px}.chip.c2{right:-6px}
+    .steps{grid-template-columns:1fr;gap:40px}
+    .steps::before{display:none}
+    .menu-btn{display:block}
+    .nav-links{
+      position:fixed;top:72px;left:0;right:0;background:#fff;flex-direction:column;align-items:stretch;gap:0;
+      padding:12px 20px 24px;border-bottom:1px solid var(--line);box-shadow:0 20px 30px rgba(15,23,42,.08);
+      transform:translateY(-12px);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;
+    }
+    .nav-links.open{transform:none;opacity:1;pointer-events:auto}
+    .nav-links li{border-bottom:1px solid var(--line)}
+    .nav-links li:last-child{border:0;padding-top:16px}
+    .nav-links a:not(.btn){display:block;padding:16px 4px}
+    .nav-links a:not(.btn)::after{display:none}
+    .nav-links .btn{width:100%;padding:14px}
+  }
+  @media (max-width:560px){
+    .cards,.benefits,.row{grid-template-columns:1fr}
+    form{padding:24px 20px}
+    .cta-row .btn{width:100%}
+    .chip{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .reveal{opacity:1;transform:none}
+    .msg{opacity:1;transform:none}
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ============ HEADER ============ -->
+<header id="top-bar">
+  <div class="container nav">
+    <a href="#home" class="logo" aria-label="Waleed AI Automation home">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 19 12 5l6 14M8.6 14h6.8"/></svg>
+      </div>
+      <span>Waleed <em>AI</em> Automation</span>
+    </a>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks"><span></span></button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#benefits">Benefits</a></li>
+      <li><a href="#contact" class="btn btn-primary">Get in Touch</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <div class="pill reveal"><i></i> AI agents &amp; automation for small businesses</div>
+      <h1 class="reveal d1">Automate More.<br><span class="accent">Grow Smarter.</span></h1>
+      <p class="lead reveal d2">I design and build AI agents and automations that take repetitive work off your plate, so you can spend your time on what actually moves your business forward.</p>
+      <div class="cta-row reveal d3">
+        <a href="#contact" class="btn btn-primary">Book a Free Consultation
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#services" class="btn btn-ghost">Explore Services</a>
+      </div>
+      <p class="hero-note reveal d4">Tell me about your business and we'll look at where automation could help.</p>
+    </div>
+
+    <div class="reveal d2" aria-hidden="true">
+      <div class="mock">
+        <div class="mock-top">
+          <div class="avatar"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 8V4M9 13h.01M15 13h.01M9.5 16.5h5"/></svg></div>
+          <div><b>Business Assistant</b><small>Example conversation</small></div>
+        </div>
+        <div class="msg bot">Hi! How can I help you today?</div>
+        <div class="msg user">Do you have any openings this Thursday?</div>
+        <div class="msg bot">Yes, I can book you in. What time suits you best?</div>
+        <div class="msg user">Afternoon, please.</div>
+        <div class="mock-foot">Illustration only. Your assistant is built around your business.</div>
+      </div>
+      <div class="chip c1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Appointment booked</div>
+      <div class="chip c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>Replies instantly</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTRO ============ -->
+<section class="intro" id="about">
+  <div class="container intro-grid">
+    <div class="reveal">
+      <span class="eyebrow">About the service</span>
+      <h2>Practical AI, built around how your business works.</h2>
+      <p>Waleed AI Automation helps small businesses use AI in simple, useful ways. Instead of buying complicated tools you never set up, you get a solution built and configured for <strong>your</strong> customers, <strong>your</strong> questions and <strong>your</strong> workflow.</p>
+      <p>The goal is straightforward: reduce repetitive tasks, respond to people faster, and give you more time to focus on running and growing your business.</p>
+      <a href="#contact" class="btn btn-primary" style="margin-top:10px">Talk About Your Needs</a>
+    </div>
+
+    <ul class="checks">
+      <li class="reveal d1"><div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></div><div><b>Tailored to you</b><span>Built around your business, not a one-size-fits-all template.</span></div></li>
+      <li class="reveal d2"><div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></div><div><b>Plain-language, no jargon</b><span>You'll always understand what is being built and why.</span></div></li>
+      <li class="reveal d3"><div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></div><div><b>Built for small teams</b><span>Right-sized solutions for owners who wear many hats.</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Services</span>
+      <h2>What I can build for you</h2>
+      <p class="lead">Five focused services to help you respond faster, capture more opportunities and save time on routine work.</p>
+    </div>
+
+    <div class="cards">
+      <article class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg></div>
+        <h3>AI Website Chatbots</h3>
+        <p>A chatbot on your website that can answer common questions about your business, guide visitors and point them to the right next step, any time of day.</p>
+      </article>
+
+      <article class="card reveal d1">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="2.5" y="13" width="5" height="7" rx="2"/><rect x="16.5" y="13" width="5" height="7" rx="2"/><path d="M19 20a4 4 0 0 1-4 2h-2"/></svg></div>
+        <h3>Customer Support Automation</h3>
+        <p>Automate replies to frequently asked questions, sort incoming requests and keep your customers informed, while your team handles the cases that need a human.</p>
+      </article>
+
+      <article class="card reveal d2">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg></div>
+        <h3>Lead Generation</h3>
+        <p>Capture enquiries, ask the right qualifying questions and organize contact details so promising leads don't slip through the cracks.</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18M9 15l2 2 4-4"/></svg></div>
+        <h3>Appointment Booking</h3>
+        <p>Let customers request or book appointments without back-and-forth messages, with confirmations and reminders to help reduce missed bookings.</p>
+      </article>
+
+      <article class="card reveal d1">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="12" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8.5 6H12a3 3 0 0 1 3 3v0M8.5 18H12a3 3 0 0 0 3-3v0"/></svg></div>
+        <h3>Workflow Automation</h3>
+        <p>Connect the tools you already use and automate repetitive steps such as data entry, notifications, follow-ups and routine admin.</p>
+      </article>
+
+      <article class="card cta-card reveal d2">
+        <h3>Not sure what you need?</h3>
+        <p>Describe your day-to-day tasks and we'll talk through where automation could realistically help.</p>
+        <a href="#contact" class="btn btn-primary">Start a Conversation</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="how" id="how">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">How it works</span>
+      <h2>A simple, three-step process</h2>
+      <p class="lead">No technical knowledge needed on your side. Here's how we go from idea to a working solution.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="num">1</div>
+        <h3>Discover</h3>
+        <p>We talk through your business, your customers and the tasks that take up the most time, then agree on what's worth automating first.</p>
+      </div>
+      <div class="step reveal d1">
+        <div class="num">2</div>
+        <h3>Build</h3>
+        <p>I design and set up your AI agent or automation, test it with realistic scenarios and refine it with your feedback.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="num">3</div>
+        <h3>Launch</h3>
+        <p>Your solution goes live. I help you get started, explain how it works and can make adjustments as your needs change.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BENEFITS ============ -->
+<section id="benefits">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Benefits</span>
+      <h2>Why small businesses automate</h2>
+      <p class="lead">Well-planned automation can help in several practical ways.</p>
+    </div>
+
+    <div class="benefits">
+      <div class="benefit reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg></div>
+        <h3>Save time</h3>
+        <p>Hand repetitive, routine tasks to automation and free up hours for higher-value work.</p>
+      </div>
+      <div class="benefit reveal d1">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div>
+        <h3>Faster responses</h3>
+        <p>Customers get answers quickly, even outside business hours, which helps create a better first impression.</p>
+      </div>
+      <div class="benefit reveal d2">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M6 12h12M10 17h4"/></svg></div>
+        <h3>Fewer missed opportunities</h3>
+        <p>Capture enquiries and bookings consistently instead of losing them to busy periods or slow follow-up.</p>
+      </div>
+      <div class="benefit reveal d3">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+        <h3>Room to grow</h3>
+        <p>Handle more customers without needing to add the same amount of manual work.</p>
+      </div>
+      <div class="benefit reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
+        <h3>More consistency</h3>
+        <p>Automated steps follow the same process every time, which helps reduce routine mistakes.</p>
+      </div>
+      <div class="benefit reveal d1">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M17 11a3 3 0 1 0 0-6M21.5 20a5.5 5.5 0 0 0-4-5.3"/></svg></div>
+        <h3>Focus on people</h3>
+        <p>Your team can spend more energy on the conversations and decisions that need a human touch.</p>
+      </div>
+      <div class="benefit reveal d2">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="3"/><path d="M7 11V8a5 5 0 0 1 10 0v3"/></svg></div>
+        <h3>Built to fit</h3>
+        <p>Solutions are set up around your tools and processes, so they feel like part of your business.</p>
+      </div>
+      <div class="benefit reveal d3">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.500-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Clear and honest</h3>
+        <p>You'll know what the automation can and can't do, with straightforward communication throughout.</p>
+      </div>
+    </div>
+
+    <p class="disclaimer reveal">Every business is different. Results depend on your situation, and no specific outcomes are guaranteed. A free consultation is the best way to see what's realistic for you.</p>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="container contact-grid">
+    <div class="contact-info reveal">
+      <span class="eyebrow">Contact</span>
+      <h2>Let's talk about automating your business.</h2>
+      <p>Tell me a little about what you do and what you'd like to improve. I'll get back to you to discuss whether and how AI automation could help.</p>
+      <ul class="info-list">
+        <li>
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 8 8 6 8-6"/></svg></div>
+          <div><span id="emailText">your-email@example.com</span><small>Email</small></div>
+        </li>
+        <li>
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2"/></svg></div>
+          <div>Replies as soon as possible<small>Response time</small></div>
+        </li>
+        <li>
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.500-1 8-4 8-9V6z"/></svg></div>
+          <div>Free, no-obligation consultation<small>First step</small></div>
+        </li>
+      </ul>
+    </div>
+
+    <form id="contactForm" class="reveal d1" novalidate>
+      <div class="row">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" autocomplete="name" placeholder="Your name" required>
+          <div class="err">Please enter your name.</div>
+        </div>
+        <div class="field">
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required>
+          <div class="err">Please enter a valid email.</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="business">Business name <span class="opt">(optional)</span></label>
+          <input id="business" name="business" type="text" autocomplete="organization" placeholder="Your business">
+        </div>
+        <div class="field">
+          <label for="service">I'm interested in</label>
+          <select id="service" name="service" required>
+            <option value="">Select a service</option>
+            <option>AI Website Chatbot</option>
+            <option>Customer Support Automation</option>
+            <option>Lead Generation</option>
+            <option>Appointment Booking</option>
+            <option>Workflow Automation</option>
+            <option>Not sure yet</option>
+          </select>
+          <div class="err">Please choose an option.</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="message">How can I help?</label>
+        <textarea id="message" name="message" placeholder="Tell me about your business and what you'd like to automate..." required></textarea>
+        <div class="err">Please tell me a little about your needs.</div>
+      </div>
+
+      <!-- Honeypot field to reduce spam bots (leave as is) -->
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <button type="submit" class="btn btn-primary" id="submitBtn">Send Message</button>
+      <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+      <p class="fine">Your details are only used to reply to your enquiry.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container foot">
+    <div>&copy; <span id="year">2026</span> Waleed AI Automation. All rights reserved.</div>
+    <div><a href="#home">Back to top &uarr;</a></div>
+  </div>
+</footer>
+
+<script>
+  /* =====================================================
+     SETTINGS — EDIT THIS PART
+     Put your real email address below. The contact form
+     opens the visitor's email app with the message ready
+     to send to this address (no paid service needed).
+     ===================================================== */
+  const CONTACT_EMAIL = "your-email@example.com";
+
+  /* ---------- Show email + current year ---------- */
+  document.getElementById("emailText").textContent = CONTACT_EMAIL;
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* ---------- Header shadow on scroll ---------- */
+  const header = document.getElementById("top-bar");
+  const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 10);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  /* ---------- Mobile menu ---------- */
+  const menuBtn = document.getElementById("menuBtn");
+  const navLinks = document.getElementById("navLinks");
+  function setMenu(open){
+    navLinks.classList.toggle("open", open);
+    menuBtn.setAttribute("aria-expanded", String(open));
+  }
+  menuBtn.addEventListener("click", () => setMenu(!navLinks.classList.contains("open")));
+  navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => setMenu(false)));
+  document.addEventListener("keydown", e => { if(e.key === "Escape") setMenu(false); });
+
+  /* ---------- Scroll reveal animations ---------- */
+  const revealEls = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add("in"));
+  }
+
+  /* ---------- Contact form ---------- */
+  const form = document.getElementById("contactForm");
+  const statusBox = document.getElementById("formStatus");
+
+  function setError(input, hasError){
+    input.classList.toggle("invalid", hasError);
+    input.closest(".field").classList.toggle("has-error", hasError);
+  }
+  function showStatus(msg, ok){
+    statusBox.textContent = msg;
+    statusBox.className = "form-status show " + (ok ? "ok" : "bad");
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    statusBox.className = "form-status";
+
+    const f = form.elements;
+    if (f.website.value) return;               // honeypot: ignore bots
+
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.value.trim());
+    const checks = [
+      [f.name,    f.name.value.trim().length > 1],
+      [f.email,   emailOk],
+      [f.service, f.service.value !== ""],
+      [f.message, f.message.value.trim().length > 4]
+    ];
+    let valid = true;
+    checks.forEach(([el, ok]) => { setError(el, !ok); if(!ok) valid = false; });
+    if (!valid) { showStatus("Please fix the highlighted fields and try again.", false); return; }
+
+    if (CONTACT_EMAIL === "your-email@example.com") {
+      showStatus("Form is working! Remember to set your real email address in the CONTACT_EMAIL setting in index.html.", false);
+      return;
+    }
+
+    const subject = "New enquiry from " + f.name.value.trim() + " — " + f.service.value;
+    const body =
+      "Name: " + f.name.value.trim() + "\n" +
+      "Email: " + f.email.value.trim() + "\n" +
+      "Business: " + (f.business.value.trim() || "-") + "\n" +
+      "Service: " + f.service.value + "\n\n" +
+      f.message.value.trim();
+
+    window.location.href = "mailto:" + CONTACT_EMAIL +
+      "?subject=" + encodeURIComponent(subject) +
+      "&body=" + encodeURIComponent(body);
+
+    showStatus("Thank you! Your email app should open with your message ready. Just press send.", true);
+    form.reset();
+  });
+
+  /* Clear error state as the user types */
+  form.querySelectorAll("input,select,textarea").forEach(el => {
+    el.addEventListener("input", () => setError(el, false));
+  });
+</script>
+</body>
+</html>
